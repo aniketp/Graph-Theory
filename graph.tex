@@ -5,6 +5,8 @@
 \usepackage{graphicx}
 \usepackage{titling}
 \usepackage{changepage}
+\usepackage{multicol}
+\usepackage{listings}
 \graphicspath{{images/}}
 
 \setlength{\droptitle}{-10em}
@@ -38,6 +40,7 @@ f =&\:o(g)\:\,\quad \textrm{if there exists }\varepsilon \textrm{ such that} \,\
 f =&\:\omega(g)\quad \:\textrm{if} \,\,  g=o(f)
 \end{align}
 \newpage
+\vspace*{-3.5cm}
 \section{Terminologies}
 Here are a few basic terminologies that are used to represent navigation through the Graph. \\
 \begin{adjustwidth}{1.5em}{0pt}
@@ -50,86 +53,44 @@ Here are a few basic terminologies that are used to represent navigation through
 \end{adjustwidth}
 
 \section{Data Structures used in Graphs}
-\subsection{Computational Model}
-Computational model is a set of operations which are used to measure the resources(time and space) that are needed for a certain problem ot be solved. In layman's terms, using this model , we can determine if the given algorithm is efficient or not. \par
-One such model is \textit{Turing Machine} . It was invented by Alan Turing in $1936$. 
-\subsection{Turing Machine}
-\textit{Turing Machine} is an abstract machine which is made up of infinite tape(s) divided into discrete boxes called \textit{cells} and an imaginary head which can read the information in the boxes and can change the values of the cells. It also has a \textit{state register} which stores the information about the state of the head.\\
-The basic \textit{Transition function} of a Turing Machine is defined as follows
+\subsection{Adjacency List}
+An Adjacency List is a collection of unordered lists used to represent a finite graph. Each list describes the set of neighbors of a vertex in the graph.
+\begin{center}
+	\includegraphics[width=8cm, height=3cm]{list}
+\end{center} 
 
-\begin{equation}
-\delta:Q\times\Gamma^k\longrightarrow Q\times\Gamma^{k-1}\times\{L,S,R\}^k
-\end{equation}  
-
-The above equation describes the functioning of a simple Turing Machine consisting of $k$ tapes where $1st$ tape is the input tape, the rest $k-1$ tapes are called \textit{work tapes}. Last one of them is designated as output tape.\par
-Here, the input tape takes the input, the work tapes decide what to do with the input and in which direction to move the head. Then finally, changes(if any) are done in the output tape.\par
+\subsection{Adjacency Matrix}
+An Adjacency Matrix is a square matrix used to represent a finite graph. The elements of the matrix indicate whether pairs of vertices are adjacent or not in the graph.
+\begin{center}
+	\includegraphics[width=8cm, height=3cm]{matrix}
+\end{center}
  
-\subsubsection{Properties of Turing Machine} 
-\begin{enumerate}
- \item If the time taken by a $k$ tape Turing Machine to compute a function is $T(n)$, where $T:N\rightarrow N$ is a Time-Constructible function. Then the time required to compute the same function by a single tape Turing Machine is $5kT(n)^2$.
- 
- \newpage
- 
- \item If a bi-directional Turing Machine computes a function in time $T(n)$, where $T:N\rightarrow N$ is a Time-Constructible function. Then the time required to compute the same function by a standard uni-directional Turing Machine is $4T(n)$.
-\end{enumerate}
+\subsection{Stacks and Queues} 
+Stacks and Queues are dynamic sets in which the element removed from the set by the \textit{delete} operation is prespecified. In a Stack, the element deleted from the set is the one inserted most recently, while in a Queue, the element that is to be deleted is the element which has been in the Queue for the longest time. \\
 
-\subsubsection{Universal Turing Machine}
-A Universal Turing Machine is a machine which can run an arbitrary Turing Machine for a given input. It is the most general form of Turing Machine, with the general form of Time complexity of UTM being $O(TlogT)$ where $T$ is for a normal TM . The reason I think it is because of the fact that a UTM has to deal with more bits of input than a normal one, which results in it being comparatively slower by a $log$ factor.\\\\
-Another important result associated with a Universal Turing Machine is \textit{The Halting Problem}.The Halting Problem is a very interesting problem in context of \textit{Uncomputability}, which proves that we cannot have a UTM which can tell with certainty whether a Turing Machine will compute a program for a given input in a finite time. In simpler words, no machine can solve the Halting Problem. This is a very important result in Computer Science because most of the problems that we generally encounter are Halting Problems, that is, a solution to them would solve The Halting Problem.\par
-Now since Halting Problem is unsolvable , it gives us another important result, that \textit{most problems are uncomputable}. For example, consider the \textit{Decision Problems} which can be considered to have input as an infinite set of either 0 or 1 ,i.e $\{0,1\}^*$ . Any combination of 0's and 1's is possible, so its impossible to compute it in finite time. Similarly, many such problems exist.\par
+A \textbf{Stack} is a container of objects that are inserted and removed according to the last-in first-out (LIFO) principle. In the pushdown stacks only two operations are allowed: push the item into the stack, and pop the item out of the stack.
 
-\section{Cryptography}
-Crytpography, or encryption in modern terms is referred to the process of converting a normal message (plaintext) into an unintelligible text (ciphertext) using a key called encryption key. Reverse of the process, decryption uses decryption key to recover back the original message.
+A \textbf{Queue} is a container of objects that are inserted and removed according to the first-in first-out (FIFO) principle. In the queue only two operations are allowed, enqueue and dequeue. Enqueue means to insert an item into the back of the queue, dequeue means removing the front item.
 
-\begin{equation}
-	D_k(E_k(x)) = x
-\end{equation}
-
-Here, 
-\begin{align}
-	E_k &=  \textrm{Encryption algorithm}  \\
-	D_k &=  \textrm{Decryption algorithm}  \\
-	x &=  \textrm{Plain text message}
-\end{align}
-\\\\
-A Cipher is the pair of algorithms which govern the encryption and decryption of data. The secrecy of data relies on the fact that only the concerned party has the knowledge of cipher key. As shown in the image below, only Alice and Bob know the actual content. A particular eavesdropper, i.e Eve recovers the data being transmitted by Alice. But to her dismay, she will only have some gibberish in the data.  
+\begin{multicols}{2}
 
 \begin{center}
-	\includegraphics[width=12cm, height=6cm]{crypto}
+	\textbf{STACK}
 \end{center}
 
-\subsection{Public Key Cryptography}
-The two keys, i.e Encryption and Decryption key, can either be public or private. But the frequently observed case is that the encryption cipher is public and decryption cipher is private.
+\lstinputlisting[language=Python, showstringspaces=false]{stack.py}
 
-This is also called \textbf{Asymmetric Cryptography}. \\
-
-Public key Cryptography ensures confidentiality. That is, anyone will be able to encrypt their data but only the party with the private key will be able to decrypt it. 
-
-\subsection{Perfect Secrecy}
-  An Encryption algorithm, however complex, can be easily broken unless its perfectly secret. Perfect Secrecy relies on the condition that the ciphertext cannot be decrypted even if the decryption machine has unlimited computational power. \\
-  
-Perfect secrecy is like completely randomised ciphertext. There is no fixed rule that governs the encryption. The Encryption key is chosen by pseudorandom generators which are $ 100\% $ random. 
-
-\subsubsection{One Time Pad}
- Just like Caeser shift, One time pad works on the principle of translating the letters by a certain length. However, the shift is not constant. For each letter in the original message, there is a unique encryption key. And that key is completely random, so the eavesdropper has no idea what the message is even after brute-forcing the cipher-text with unlimited computational power.
- 
-\subsubsection{Demonstration}
-I will show a demonstration of how perfectly secret texts cannot be deciphered.\\
-
-Suppose you want to encrypt a message BAD DOG with a One time pad XIF CLM (each letter chosen randomly). So after running the encryption algorithm..
+\columnbreak
 
 \begin{center}
-	(XIF CLM):(BAD DOG) $ \longrightarrow $  ZJJ GAT
+	\textbf{QUEUE}
 \end{center}
 
-Now, the eavesdropper will try to identify the pattern in the ciphertext. Since the encryption key was chosen completely randomly and is of the same length of the message, so there will not be any observable pattern in the text.  Using Brute force as the last resort, he'll try to get every possible feasible outcome. On trying out a few keys
+\lstinputlisting[language=Python, showstringspaces=false]{queue.py}
 
-\begin{center}
-	(UIP DZZ):(ZJJ GAT) $ \longleftarrow $ EAT CAT\\
-	(XIF CLM):(ZJJ GAT) $ \longleftarrow $  BAD DOG\\
-	(TIP FMZ):(ZJJ GAT) $ \longleftarrow $ FAT ANT\\
-\end{center}
+\end{multicols}
 
-Since, each of the decrypted messages EAT CAT, BAD DOG, FAT ANT have equal probability of being the original message, there is now way the eavesdropper will be certain of the actual message.
+\section{BFS and DFS}
+
 
 \end{document}
