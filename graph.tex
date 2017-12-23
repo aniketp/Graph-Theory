@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper]{extarticle}
+\documentclass[11pt,a4paper]{extarticle}
 
 \usepackage[top=1.5in]{geometry}
 \usepackage{amsmath}
@@ -39,8 +39,7 @@ f =&\:\Theta(g)\quad \textrm{if} \,\,  f=O(g) \,\, \& \,\, g=O(f)\\
 f =&\:o(g)\:\,\quad \textrm{if there exists }\varepsilon \textrm{ such that} \,\, f(n)<\varepsilon\cdot g(n) \\
 f =&\:\omega(g)\quad \:\textrm{if} \,\,  g=o(f)
 \end{align}
-\newpage
-\vspace*{-3.5cm}
+
 \section{Terminologies}
 Here are a few basic terminologies that are used to represent navigation through the Graph. \\
 \begin{adjustwidth}{1.5em}{0pt}
@@ -71,14 +70,14 @@ Stacks and Queues are dynamic sets in which the element removed from the set by 
 A \textbf{Stack} is a container of objects that are inserted and removed according to the last-in first-out (LIFO) principle. In the pushdown stacks only two operations are allowed: push the item into the stack, and pop the item out of the stack.
 
 A \textbf{Queue} is a container of objects that are inserted and removed according to the first-in first-out (FIFO) principle. In the queue only two operations are allowed, enqueue and dequeue. Enqueue means to insert an item into the back of the queue, dequeue means removing the front item.
-
+\newpage
 \begin{multicols}{2}
 
 \begin{center}
 	\textbf{STACK}
 \end{center}
 
-\lstinputlisting[language=Python, showstringspaces=false]{stack.py}
+\lstinputlisting[language=Python, showstringspaces=false]{code/stack.py}
 
 \columnbreak
 
@@ -86,7 +85,7 @@ A \textbf{Queue} is a container of objects that are inserted and removed accordi
 	\textbf{QUEUE}
 \end{center}
 
-\lstinputlisting[language=Python, showstringspaces=false]{queue.py}
+\lstinputlisting[language=Python, showstringspaces=false]{code/queue.py}
 
 \end{multicols}
 
