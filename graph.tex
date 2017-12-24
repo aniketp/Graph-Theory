@@ -18,9 +18,6 @@
 \begin{document}
 \maketitle
 
-%\section{Acknowledgement}
-%\textit{I would like to thank Sunil Pandey () for %mentoring me in the project and in helping me prepare this %report. I would also like to thank ACA for giving me the %opportunity to learn the topic in detail.}
-
 \section{Introduction}
 Graph Theory is the study of Graphs, the mathematical objects modelling the pairwise relation of Vertices(also called nodes) and Edges where two nodes are connected by edges. A graph can be directed or undirected, cyclic or acyclic, linear or weighted etc. 
 
@@ -90,6 +87,36 @@ A \textbf{Queue} is a container of objects that are inserted and removed accordi
 \end{multicols}
 
 \section{BFS and DFS}
+\subsection{Breadth First Search}
+Breadth First Search (or BFS) is a graph traversal algorithm through which we can determine the shortest path from a source node $V$ to any other node in the graph, which is visitable from $V$. BFS works by starting from the source node, then visits all its neighbours, assignes them the value $1$ (distance from $V$). It continues the process by visiting the neighbours of the current node which have not already been visited, assignes them the respective value.
 
+Now the question is, how do we keep track of all visited nodes. Well, for that we use a \textit{boolean array} and a \textit{queue} for storing the status of each node and for storing a node's unvisited neighbours respectively. 
+
+Here is a simple pseudocode of BFS. 
+
+\begin{adjustwidth}{2.5em}{0pt}
+\lstinputlisting[language=Python, showstringspaces=false]{code/bfs.py}
+\end{adjustwidth}
+
+\subparagraph{Explanation and Analysis}
+In the beginning I have declared an empty set $visited$, and enqueued the source node $S$. Then as long as queue $Q$ is not empty (there are unvisited nodes), we'll dequeue it and check all its neighbours, if they have not been visited, enqueue them and mark them as visited. This process will continue till every node is in the visited array. We can further run a test in the boolean array to check if there is a node which cannot be visited from the source node.
+
+For example, in the image shown below, the node 7 cannot be visited from the source node 3.
+
+\begin{center}
+	\includegraphics[width=8cm, height=3cm]{bfs}
+\end{center}
+
+\subparagraph{Time Complexity}
+TODO
+
+\subsection{Depth First Search}
+
+Depth First Search (or DFS) is a recursive Graph traversal algorithm using which we can determine the minimum spanning tree, presence of cycles and to check if the graph is bipartite. DFS works on the principle of backtracking, that is, it goes down a path, maintaining visited nodes in a \textit{stack} this time. When it can't find another unvisited node, it backtracks its path to the nearest node which has an unvisited neighbour. It continues this process until it lands back to the source node, implying that the traversal is complete.
+
+
+\begin{adjustwidth}{2.5em}{0pt}
+\lstinputlisting[language=Python, showstringspaces=false]{code/dfs.py}
+\end{adjustwidth}
 
 \end{document}
