@@ -119,4 +119,39 @@ Depth First Search (or DFS) is a recursive Graph traversal algorithm using which
 \lstinputlisting[language=Python, showstringspaces=false]{code/dfs.py}
 \end{adjustwidth}
 
+\subparagraph{Explanation and Analysis}
+Apart from Graph and source node, the \textit{dfs} function also takes as an input an empty $stack$ which is used to keep track of visited chain of nodes, that is, we keep pushing onto the stack the nodes that have been visited, popping them once the recursion is complete. Then the part which checks for unvisited node is same as that in \textit{bfs}, only difference being we call dfs at every iteration.
+
+\subparagraph{Time Complexity}
+TODO
+
+\section{Single Source, Shortest Path}
+Till now, both algorithms relied on the fact that the weight of each edge is unity. What if the weights were any integer (even negative), in that case, the algorithms discussed above will not work. For instance in the images shown below
+
+\begin{multicols}{2}
+
+\begin{center}
+	\includegraphics[width=5cm, height=3cm]{shortest}
+\end{center}
+Here, the direct path between 4 and 5 (58) is not the shortest one. 4-2-5 will be much shorter.
+
+\columnbreak
+
+\begin{center}
+	\includegraphics[width=6cm, height=3cm]{negative}
+\end{center}
+
+Here, the cycle $BCD$ has negative length (-1) implying the cycle has infinite negative weight.
+
+\end{multicols}
+
+To alleviate this issue, I'll discuss two algorithms, namely \textit{Dijkstra's Algorithm} \& \textit{Bellman-Ford Algorithm}
+
+\subsection{Dijkstra's Algorithm}
+Dijkstra’s algorithm finds a shortest path tree from a single source node, by building a set of nodes that have minimum distance from the source. The graph will have random connected nodes denoted by $u$ and $v$ and the weight of their edge will be $len(u,v)$. Purpose is to find the shortest path of every node from a given source node $s$.
+
+\begin{adjustwidth}{2.5em}{0pt}
+\lstinputlisting[language=Python, showstringspaces=false]{code/dijkstra.py}
+\end{adjustwidth}
+
 \end{document}
