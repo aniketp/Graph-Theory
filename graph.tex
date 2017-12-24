@@ -154,4 +154,12 @@ Dijkstra’s algorithm finds a shortest path tree from a single source node, by 
 \lstinputlisting[language=Python, showstringspaces=false]{code/dijkstra.py}
 \end{adjustwidth}
 
+\subparagraph{Explanation and Analysis}
+Dijkstra starts off by declaring an array \textit{dist} to store updated shortest distance of a node from the source. Clearly, $len(v,v) = 0$ and for every other node $u$, $dist[u] = \infty$. Now, we select the node which has the least distance from source (say $v$) and check if for a node $u$ $dist[v] + len(u,v) < dist[u]$. If so, then we update the value of $dist[u]$. This process continues till the no more updates can be done (Shortest paths have been found)
+
+\subparagraph{Time Complexity}
+TODO
+
+\subsection{Bellman-Ford Algorithm}
+
 \end{document}
