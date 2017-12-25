@@ -19,9 +19,9 @@
 \maketitle
 
 \section{Introduction}
-Graph Theory is the study of Graphs, the mathematical objects modelling the pairwise relation of Vertices(also called nodes) and Edges where two nodes are connected by edges. A graph can be directed or undirected, cyclic or acyclic, linear or weighted etc. 
+Graph Theory is the study of Graphs, the mathematical structures modelling the pairwise relation of Vertices (also called nodes) and Edges, where two nodes are connected by an edge. A graph can be directed or undirected, cyclic or acyclic, linear or weighted etc. 
 
-Graph Theoretical concepts are widely used to study and model various applications, in different areas. For example, in Computer Science, problems like travelling salesman problem, the shortest spanning tree in a weighted graph and in Mathematics like hamiltonian graphs and Fermat's Little Theorem \& Nielson-Schreier Theorem. 
+Graph Theoretical concepts are widely used to study and model various applications, in different areas. For example, in Computer Science, problems like Travelling salesman problem, the Minimal spanning tree in a weighted graph and in Mathematics like Hamiltonian graphs, Fermat's Little Theorem \& Nielson-Schreier Theorem. 
 
 \section{Notations}
 \subsection{Big-O Notation}
@@ -38,25 +38,34 @@ f =&\:\omega(g)\quad \:\textrm{if} \,\,  g=o(f)
 \end{align}
 
 \section{Terminologies}
-Here are a few basic terminologies that are used to represent navigation through the Graph. \\
+Here are a few basic terminologies that are used to portray navigation through a Graph. \\
 \begin{adjustwidth}{1.5em}{0pt}
 \begin{description}
-\item [Walk] A walk is any route through a graph from vertex to vertex along edges. A walk can end on the same vertex on which it began or on a different vertex. A walk can travel over any edge and any vertex any number of times.
+\item [Walk] A walk is any route through a graph from vertex to vertex along edges. It can end on the same vertex on which it began or on a different vertex and there is no limit on how many times a vertex is convered.
 \item [Path] A path is a walk that does not include any vertex twice, except that its first vertex might be the same as its last.
-\item [Trail] A trail is a walk that does not pass over the same edge twice. A trail might visit the same vertex twice, but only if it comes and goes from a different edge each time.
-\item [Cycle] A cycle is a path that begins and ends on the same vertex.	
+\item [Cycle] A cycle is a path that begins and ends on the same vertex, like a closed loop.
 \end{description}
 \end{adjustwidth}
 
 \section{Data Structures used in Graphs}
 \subsection{Adjacency List}
 An Adjacency List is a collection of unordered lists used to represent a finite graph. Each list describes the set of neighbors of a vertex in the graph.
+
 \begin{center}
 	\includegraphics[width=8cm, height=3cm]{list}
 \end{center} 
 
 \subsection{Adjacency Matrix}
 An Adjacency Matrix is a square matrix used to represent a finite graph. The elements of the matrix indicate whether pairs of vertices are adjacent or not in the graph.
+
+\[
+    a(i,j)= 
+\begin{cases}
+    1,& \text{if } (i,j) \in E\\
+    0,& \text{otherwise}
+\end{cases}
+\]
+
 \begin{center}
 	\includegraphics[width=8cm, height=3cm]{matrix}
 \end{center}
@@ -64,7 +73,7 @@ An Adjacency Matrix is a square matrix used to represent a finite graph. The ele
 \subsection{Stacks and Queues} 
 Stacks and Queues are dynamic sets in which the element removed from the set by the \textit{delete} operation is prespecified. In a Stack, the element deleted from the set is the one inserted most recently, while in a Queue, the element that is to be deleted is the element which has been in the Queue for the longest time. \\
 
-A \textbf{Stack} is a container of objects that are inserted and removed according to the last-in first-out (LIFO) principle. In the pushdown stacks only two operations are allowed: push the item into the stack, and pop the item out of the stack.
+A \textbf{Stack} is a container of objects that are inserted and removed according to the last-in first-out (LIFO) principle. In the pushdown stacks only two operations are allowed, push the item into the stack and pop the item out of the stack.
 
 A \textbf{Queue} is a container of objects that are inserted and removed according to the first-in first-out (FIFO) principle. In the queue only two operations are allowed, enqueue and dequeue. Enqueue means to insert an item into the back of the queue, dequeue means removing the front item.
 \newpage
@@ -116,7 +125,7 @@ O(V,E) =& \,\,\,O(V+E)
 
 \subsection{Depth First Search}
 
-Depth First Search (or DFS) is a recursive Graph traversal algorithm using which we can determine the minimum spanning tree, presence of cycles and to check if the graph is bipartite. DFS works on the principle of backtracking, that is, it goes down a path, maintaining visited nodes in a \textit{stack} this time. When it can't find another unvisited node, it backtracks its path to the nearest node which has an unvisited neighbour. It continues this process until it lands back to the source node, implying that the traversal is complete.
+Depth First Search (or DFS) is a recursive Graph traversal algorithm using which we can determine the minimal spanning tree, presence of cycles and to check if the graph is bipartite. DFS works on the principle of backtracking, that is, it goes down a path, maintaining visited nodes in a \textit{stack} this time. When it can't find another unvisited node, it backtracks its path to the nearest node which has an unvisited neighbour. It continues this process until it lands back to the source node, implying that the traversal is complete.
 
 
 \begin{adjustwidth}{2.5em}{0pt}
@@ -130,7 +139,7 @@ Apart from Graph and source node, the \textit{dfs} function also takes as an inp
 Same as that of BFS, the complexity of DFS is $O(V+E)$
 
 \section{Single Source, Shortest Path}
-Till now, both algorithms relied on the fact that the weight of each edge is unity. What if the weights were any integer (even negative), in that case, the algorithms discussed above will not work. For instance in the images shown below
+Till now, both algorithms relied on the fact that the weight of each edge is unity. What if the weights were integers (even negative), in that case, the algorithms discussed above will not work. For instance in the images shown below
 
 \begin{multicols}{2}
 
@@ -172,6 +181,10 @@ O(V,E) =& \,\,\,O(V) + O((E-1)logV) + O(c)\\
 \subsection{Bellman-Ford Algorithm}
 The Bellman-Ford is another algorithm which calculates the shortest paths from a single source. It is slower than Dijkstra, but for appropriate reasons as it also takes into account negative weights. If we put a Graph with negative edge cycles into Dijkstra, it will ignore those cycles and give wrong results.
 
+\begin{center}
+	\includegraphics[width=6cm, height=3cm]{bellford}
+\end{center}
+
 \begin{adjustwidth}{2.5em}{0pt}
 \lstinputlisting[language=Python, showstringspaces=false]{code/bell.py}
 \end{adjustwidth}
@@ -183,11 +196,20 @@ It has been proved that this iteration for $|V|$ times will make sure every shor
 
 
 \subparagraph{Time Complexity}
-For various relaxations, Bellman-Ford check $|E|$ edges for every node in $|V|$. So the time complexity is,
+For various relaxations, Bellman-Ford checks $|E|$ edges for every node in $|V|$. So the time complexity is,
 
 \begin{align}
 O(V,E) =& \,\,\,O(V) + O(V.E) + O(E) + O(c)\\
 	   =& \,\,\,O(V.E)
 \end{align}
+
+\section{Conclusion}
+So these were the 4 major Graph Algorithms I studied for the project. After careful analysis, I realized the application of these algorithms is much more prevalent than the problems which they seem to elucidate. I was able to solve most of the problems concerning graphs by simply using the trivial BFS or DFS. However, on certain occasions, I had to go for the weighted giants. 
+
+For the problems with application of either BFS or DFS, I had to observe how far I'll have to travel down the graph. For quick results, which are only concerned with examining a section of graph, I preferred DFS as its recursive nature allowed be to cover the relevant portions quickly. It also reduced the net complexity by not scanning every neighbour of every node.
+
+Most of the problems involved application of these algorithms like topological sorting, checking for bipartite graph, finding shortest route, finding fastest route, detecting cycles and so on. I rarely encountered negative weights so never had to go for Bellman-Ford. Although I believe it will be useful in many advanced problems.
+
+There are a few more renowned graph algorithms which I'd like to study later on, some of them being Flyod Warshall, Kruskal \& Prim's Algorithm. 
 
 \end{document}

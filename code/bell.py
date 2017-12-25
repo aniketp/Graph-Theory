@@ -8,8 +8,9 @@ def bellmanFord(Graph, Egde, S):
     for (u,v) in Edge:
       if dist[v] > dist[u] + len(u,v):
         dist[v] = dist[u] + len(u,v)
+        v.prev = u
 
-  for (u, v) in Edge:
+  for (u,v) in Edge:
     if dist[v] > dist[u] + len(u,v):
       print "A negative weight cycle exists"
 
