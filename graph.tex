@@ -168,7 +168,7 @@ Dijkstra’s algorithm finds a shortest path tree from a single source node, by 
 \end{adjustwidth}
 
 \subparagraph{Explanation and Analysis}
-Dijkstra starts off by declaring an array \textit{dist} to store updated shortest distance of a node from the source. Clearly, $len(v,v) = 0$ and for every other node $u$, $dist[u] = \infty$. Now, we select the node which has the least distance from source (say $v$) and check if for a node $u$ $dist[v] + len(u,v) < dist[u]$. If so, then we update the value of $dist[u]$. This process continues till the no more updates can be done (Shortest paths have been found)
+Dijkstra starts off by declaring an array \textit{dist} to store updated shortest distance of a node from the source. Clearly, $len(v,v) = 0$ and for every other node $u$, $dist[u] = \infty$. Now, we select the node which has the least distance from source (say $v$) and check if for a node $u$ $dist[v] + len(u,v) < dist[u]$. If so, then we update the value of $dist[u]$. This process continues till the no more updates can be done. (Shortest paths have been found)
 
 \subparagraph{Time Complexity}
 The code which evaluates vertex $v$ for which $dist[v]$ is minimum can be a binary search of complexity $O(logV)$. For every node $v$, there are $v-1$ nodes and hence, $v-1$ possible edges (routes). So the complexity for Dijkstra is,
@@ -192,7 +192,7 @@ The Bellman-Ford is another algorithm which calculates the shortest paths from a
 \subparagraph{Explanation and Analysis}
 Bellman-Ford works by overestimating the edge lengths of every node, assuming it to be a very large number. $node.prev = nil$ specifies the pointer to previous node which in this case has not yet been initialized. This algorithm relaxes the shortest path of each node by iterating over every possible edge, checks if $dist[v] > dist[u] + len(u,v)$ for adjacent nodes $(u,v)$ and if so, replaces the value of $dist[v]$. 
 
-It has been proved that this iteration for $|V|$ times will make sure every shortest path is computed. Now, for the presence of any negative weight cycles, the last iteration again checks for triangular inequality for every pair $(u,v)$ in the Edge set. If it finds one, reports it as a negative weight cycle. 
+It has been proved that this iteration for $|V|$ times will make sure every shortest path is computed. Now, for the presence of any negative weight cycles, the last iteration again checks for triangular inequality for every pair $(u,v)$ in the Edge set. If it finds one, reports it as a negative weight cycle. $Graph.prev[]$ can be used to formulate the shortest path found out by this algorithm, by finding the predecessors of each node starting from the destination node.
 
 
 \subparagraph{Time Complexity}
@@ -210,6 +210,6 @@ For the problems with application of either BFS or DFS, I had to observe how far
 
 Most of the problems involved application of these algorithms like topological sorting, checking for bipartite graph, finding shortest route, finding fastest route, detecting cycles and so on. I rarely encountered negative weights so never had to go for Bellman-Ford. Although I believe it will be useful in many advanced problems.
 
-There are a few more renowned graph algorithms which I'd like to study later on, some of them being Flyod Warshall, Kruskal \& Prim's Algorithm. 
+There are a few more renowned graph algorithms which I'd like to study later on, some of them being Floyd Warshall, Kruskal \& Prim's Algorithm. 
 
 \end{document}
