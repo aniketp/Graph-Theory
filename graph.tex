@@ -192,7 +192,7 @@ The Bellman-Ford is another algorithm which calculates the shortest paths from a
 \subparagraph{Explanation and Analysis}
 Bellman-Ford works by overestimating the edge lengths of every node, assuming it to be a very large number. $node.prev = nil$ specifies the pointer to previous node which in this case has not yet been initialized. This algorithm relaxes the shortest path of each node by iterating over every possible edge, checks if $dist[v] > dist[u] + len(u,v)$ for adjacent nodes $(u,v)$ and if so, replaces the value of $dist[v]$. 
 
-It has been proved that this iteration for $|V|$ times will make sure every shortest path is computed. Now, for the presence of any negative weight cycles, the last iteration again checks for triangular inequality for every pair $(u,v)$ in the Edge set. If it finds one, reports it as a negative weight cycle. $Graph.prev[]$ can be used to formulate the shortest path found out by this algorithm, by finding the predecessors of each node starting from the destination node.
+It has been proved that this iteration for $|V|$ times will make sure every shortest path is computed. Now, for the presence of any negative weight cycles, the last iteration again checks for triangular inequality for every pair $(u,v)$ in the Edge set. If it finds one, reports it as a negative weight cycle. Graph.\textit{prev}[] can be used to formulate the shortest path found out by this algorithm, by finding the predecessors of each node starting from the destination node.
 
 
 \subparagraph{Time Complexity}
