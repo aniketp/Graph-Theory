@@ -12,7 +12,7 @@
 \setlength{\droptitle}{-10em}
 
 \title{\textbf{Graph Theory \& Algorithms}}
-\date{23 December 2017}
+%\date{23 December 2017}
 \author{Aniket Pandey}
 
 \begin{document}
@@ -202,6 +202,24 @@ For various relaxations, Bellman-Ford checks $|E|$ edges for every node in $|V|$
 O(V,E) =& \,\,\,O(V) + O(V.E) + O(E) + O(c)\\
 	   =& \,\,\,O(V.E)
 \end{align}
+
+\section{Minimum Spanning Tree}
+A \textbf{Spanning Tree} of a Graph is set of edges, essentially forming a tree such that all the vertices of the graph are connected and there is no formation of a cycle in the process. For a weighted graph, we can define a \textit{Minimum Spanning Tree} to be a spanning tree with the additional property that the sum of all weighted edges in minimum.
+
+\begin{center}
+	\includegraphics[width=6cm, height=3cm]{mst}
+\end{center}
+
+Mathmematically, we can define the MST problem as followes. Consider a Graph $G = (V,E)$, where $V$ and $E$ are usual notations for Set of all vertices and edges respectively. Since the Graph is weighed, for an edge $(u,v) \in E$, we have a weight function $w(u,v)$ specifying the distance between the edges. We wish to find an acyclic subset $T \subset E$ that connects all vertices and 
+\begin{align}
+w(T) =& \min{\sum_{(u,v) \in T} w(u,v)}
+\end{align}
+
+\noindent
+gives the total length of the MST.
+
+\subsection{Building a minimum spanning tree}
+Algorithms to construct a Minimum Spanning Tree are greedy by nature. This can be proved by simple induction and the generic approach that is taken to build it. The two algorithms to grow an MST are \textbf{Kruksal's} and \textbf{Prim's} algorithm.
 
 \section{Conclusion}
 So these were the 4 major Graph Algorithms I studied for the project. After careful analysis, I realized the application of these algorithms is much more prevalent than the problems which they seem to elucidate. I was able to solve most of the problems concerning graphs by simply using the trivial BFS or DFS. However, on certain occasions, I had to go for the weighted giants. 
