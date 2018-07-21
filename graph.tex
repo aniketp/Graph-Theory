@@ -221,10 +221,51 @@ gives the total length of the MST.
 \subsection{Building a minimum spanning tree}
 Algorithms to construct a Minimum Spanning Tree are greedy by nature. This can be proved by simple induction and the generic approach that is taken to build it. The two algorithms to grow an MST are \textbf{Kruksal's} and \textbf{Prim's} algorithm.
 
+
+Let A be a subset of some minimum spanning tree. We define a \textbf{safe edge} to be an edge $(u,v)$ such that $A \bigcup {(u,v)}$ does not violate the acyclic property of a mimimum spanning tree. We keep doing this till all the vertices have been taken into account. Folowing is the pseudo-code for a \textit{Generic MST} building, taken from CLRS.
+
+\begin{adjustwidth}{2.5em}{0pt}
+\lstinputlisting[language=Python, showstringspaces=false]{code/generic_mst.py}
+\end{adjustwidth}
+
+Both \textit{Kruksal} and \textit{Prim}'s algorithm build upon this generic approach.
+
+\subsection{Kruskal's Minimum Spanning Tree}
+Krusksal's algorithm works by building a \textit{forest}, i.e disjoint trees. For every iteration, it picks up the edge with the least weight with the vertices necessarily being from separate trees. Care is taken not to connect two vertices from same tree, else a \textit{cycle} would be created, eventually breaking the spanning tree condition.
+
+\begin{adjustwidth}{2.5em}{0pt}
+\lstinputlisting[language=Python, showstringspaces=false]{code/kruksal.py}
+\end{adjustwidth}
+
+\subparagraph{Explanation and Analysis}
+Kruskal sorts the edges in the decreasing order by their weight. It then simply follows the rule of:
+\begin{enumerate}
+	\item Check if addition of edge $(u,v)$ does not form a cycle, via union-find$(u,v)$.
+	\item If it does not, add the edge to MST-SET() (The Set of Minimum spanning tree).
+	\item Follow this procedure until all vertices have been connected through $V-1$ edges.
+\end{enumerate}
+
+\subparagraph{Time Complexity}
+Sorting the edges takes $O(E logE)$ time, and the Disjoint tree check condition takes $O(logV)$ time, hence:
+\begin{align}
+T(V,E) =& \,\,\,O(1) + O(V) + O(E logE) + O(V logV)\\
+	   =& \,\,\,O(E logE) + O(V logV)
+\end{align}
+
+\noindent
+Since there can only be one edge connecting any two vertices, hence $|E| >= |V|-1$
+\begin{align}
+T(V,E) =& \,\,\,O(E logE) + O(V logV)\\
+	   =& \,\,\,O(E logE)
+\end{align}
+
+
+
+
 \section{Conclusion}
 So these were the 4 major Graph Algorithms I studied for the project. After careful analysis, I realized the application of these algorithms is much more prevalent than the problems which they seem to elucidate. I was able to solve most of the problems concerning graphs by simply using the trivial BFS or DFS. However, on certain occasions, I had to go for the weighted giants. 
 
-For the problems with application of either BFS or DFS, I had to observe how far I'll have to travel down the graph. For quick results, which are only concerned with examining a section of graph, I preferred DFS as its recursive nature allowed be to cover the relevant portions quickly. It also reduced the net complexity by not scanning every neighbour of every node.
+For the problems with application of either BFS or DFS, I had to observe how far I'll have to travel down the graph. For quick results, which are only concerned with examining a section of graph, I preferred DFS as its recursive nature allowed me to cover the relevant portions quickly. It also reduced the net complexity by not scanning every neighbour of every node.
 
 Most of the problems involved application of these algorithms like topological sorting, checking for bipartite graph, finding shortest route, finding fastest route, detecting cycles and so on. I rarely encountered negative weights so never had to go for Bellman-Ford. Although I believe it will be useful in many advanced problems.
 
