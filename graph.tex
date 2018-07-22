@@ -253,14 +253,26 @@ T(V,E) =& \,\,\,O(1) + O(V) + O(E logE) + O(V logV)\\
 \end{align}
 
 \noindent
-Since there can only be one edge connecting any two vertices, hence $|E| >= |V|-1$
+Since there can only be one edge connecting any two vertices, therefore $|E| >= |V|-1$
 \begin{align}
 T(V,E) =& \,\,\,O(E logE) + O(V logV)\\
 	   =& \,\,\,O(E logE)
 \end{align}
 
+\subsection{Prim's Minimum Spanning Tree}
+Prim's algorithm to obtain an MST from a Graph is also a Greedy algorithm, just like \textit{Kruksal}. In operation it is similar to Dijsktra in terms of initialising all edge distances "\textit{key}" from a selected source vertex and then updating the keys as we go about choosing minimum weight edges.
 
+The algorithm maintains two sets, the first set contains the vertices already included in the MST, called \textit{MST-Set}, the other set contains the vertices not yet included. The idea is to transfer the vertices one by one to the former following the above algorithm.
 
+\begin{adjustwidth}{2.5em}{0pt}
+\lstinputlisting[language=Python, showstringspaces=false]{code/prim.py}
+\end{adjustwidth}
+
+\subparagraph{Explanation and Analysis}
+Prim initializes the \textit{key} for every vertex $v$ as $\infty$ except for the source vertex, for which the \textit{key} is $0$. So our, set is initialised as \{0, $\infty$, $\infty$, ...\}.
+\linebreak
+
+Now, in the main iteration, it checks if a node is in non MST-Set \textit{Q}, if not then it simply extracts the node with minimum key and updates it according to its neighbors. This process is continued until all the $V$ vertices are in \textit{mst\_set}, which is accordingly returned.
 
 \section{Conclusion}
 So these were the 4 major Graph Algorithms I studied for the project. After careful analysis, I realized the application of these algorithms is much more prevalent than the problems which they seem to elucidate. I was able to solve most of the problems concerning graphs by simply using the trivial BFS or DFS. However, on certain occasions, I had to go for the weighted giants. 
@@ -268,7 +280,5 @@ So these were the 4 major Graph Algorithms I studied for the project. After care
 For the problems with application of either BFS or DFS, I had to observe how far I'll have to travel down the graph. For quick results, which are only concerned with examining a section of graph, I preferred DFS as its recursive nature allowed me to cover the relevant portions quickly. It also reduced the net complexity by not scanning every neighbour of every node.
 
 Most of the problems involved application of these algorithms like topological sorting, checking for bipartite graph, finding shortest route, finding fastest route, detecting cycles and so on. I rarely encountered negative weights so never had to go for Bellman-Ford. Although I believe it will be useful in many advanced problems.
-
-There are a few more renowned graph algorithms which I'd like to study later on, some of them being Floyd Warshall, Kruskal \& Prim's Algorithm. 
 
 \end{document}
