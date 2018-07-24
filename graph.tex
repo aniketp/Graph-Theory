@@ -138,6 +138,23 @@ Apart from Graph and source node, the \textit{dfs} function also takes as an inp
 \subparagraph{Time Complexity}
 Same as that of BFS, the complexity of DFS is $O(V+E)$
 
+\subsection{Topological Sorting}
+Topological sorting for Directed Acyclic Graph (DAG) is a linear ordering of vertices such that for every directed edge $(u,v)$, vertex $u$ comes before $v$ in the ordering. Topological Sorting for a graph is not possible if the graph is not a DAG.
+
+\begin{center}
+	\includegraphics[width=8cm, height=3cm]{topological}
+\end{center}
+
+\begin{adjustwidth}{2.5em}{0pt}
+\lstinputlisting[language=Python, showstringspaces=false]{code/topological.py}
+\end{adjustwidth}
+
+\subparagraph{Explanation and Analysis}
+Topological sort uses the \textit{finishing time} of a DFS call to determine the order of sorted vertices. The node with the last finishing time is first in the list, as there is no direct path to it from any other vertex. As soon as all edges of a vertex $v$ are marked visited, we add it to the concerned list.
+
+\subparagraph{Time Complexity}
+of Topological Sorting is same as DFS, i.e $O(V+E)$ as it is obvious.
+
 \section{Single Source, Shortest Path}
 Till now, both algorithms relied on the fact that the weight of each edge is unity. What if the weights were integers (even negative), in that case, the algorithms discussed above will not work. For instance in the images shown below
 
@@ -269,7 +286,7 @@ The algorithm maintains two sets, the first set contains the vertices already in
 \end{adjustwidth}
 
 \subparagraph{Explanation and Analysis}
-Prim initializes the \textit{key} for every vertex $v$ as $\infty$ except for the source vertex, for which the \textit{key} is $0$. So our, set is initialised as \{0, $\infty$, $\infty$, ...\}.
+Prim initializes the \textit{key} for every vertex $v$ as $\infty$ except for the source vertex, for which the \textit{key} is $0$. So our set is initialised as \{0, $\infty$, $\infty$, ...\}.
 \linebreak
 
 Now, in the main iteration, it checks if a node is in non MST-Set \textit{Q}, if not then it simply extracts the node with minimum key and updates it according to its neighbors. This process is continued until all the $V$ vertices are in \textit{mst\_set}, which is accordingly returned.
