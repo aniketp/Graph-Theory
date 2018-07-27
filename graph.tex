@@ -155,6 +155,27 @@ Topological sort uses the \textit{finishing time} of a DFS call to determine the
 \subparagraph{Time Complexity}
 of Topological Sorting is same as DFS, i.e $O(V+E)$ as it is obvious.
 
+\section{Strongly Connected Components}
+A directed graph is strongly connected if there is a path between all pairs of vertices. A strongly connected component (SCC) of a directed graph is a maximal strongly connected subgraph. Finding out if a Graph is Strongly Connected or not is a classic application of Depth First Search.
+
+\begin{center}
+	\includegraphics[width=8cm, height=4cm]{sccexample}
+\end{center}
+
+\subsection{Kosaraju's Algorithm for verifying SCC}
+\textit{Kosaraju's} Algorithm does BFS twice, once with the original Graph and other with the inverted Graph. Idea is that, if it is possible to reach all other vertices from a source vertex and reach the source vertex from all other vertices (reason for inverting the graph), the the Graph is \textit{maximal strongly connected} itself. That is, any vertex is reachable from any other vertex.
+
+\begin{adjustwidth}{2.5em}{0pt}
+\lstinputlisting[language=Python, showstringspaces=false]{code/scc.py}
+\end{adjustwidth}
+
+\subparagraph{Explanation and Analysis}
+Proof of how this works is quite simple. Let $u$ and $v$ be any two vertices. Two confirm the $SCC$ property, we need to show that both $u$ \& $v$ are reachable from each other. Following the above algorithm, if the vertices are reachable and can be reached from/to a given source node $src$, then we can use the following analogy to prove the correctness of the algorithm.
+
+\begin{align}
+	U \longrightarrow Src \longrightarrow V \;\;\;\;\;\;\;\; V \longrightarrow Src \longrightarrow U
+\end{align}
+
 \section{Single Source, Shortest Path}
 Till now, both algorithms relied on the fact that the weight of each edge is unity. What if the weights were integers (even negative), in that case, the algorithms discussed above will not work. For instance in the images shown below
 
@@ -292,9 +313,9 @@ Prim initializes the \textit{key} for every vertex $v$ as $\infty$ except for th
 Now, in the main iteration, it checks if a node is in non MST-Set \textit{Q}, if not then it simply extracts the node with minimum key and updates it according to its neighbors. This process is continued until all the $V$ vertices are in \textit{mst\_set}, which is accordingly returned.
 
 \section{Conclusion}
-So these were the 4 major Graph Algorithms I studied for the project. After careful analysis, I realized the application of these algorithms is much more prevalent than the problems which they seem to elucidate. I was able to solve most of the problems concerning graphs by simply using the trivial BFS or DFS. However, on certain occasions, I had to go for the weighted giants. 
+So these were the 8 major Graph Algorithms I studied for the project. After careful analysis, I realized the application of these algorithms is much more prevalent than the problems which they seem to elucidate. I was able to solve most of the problems concerning graphs by simply using the trivial BFS or DFS. However, on certain occasions, I had to go for the weighted giants. \\
 
-For the problems with application of either BFS or DFS, I had to observe how far I'll have to travel down the graph. For quick results, which are only concerned with examining a section of graph, I preferred DFS as its recursive nature allowed me to cover the relevant portions quickly. It also reduced the net complexity by not scanning every neighbour of every node.
+For the problems with application of either BFS or DFS, I had to observe how far I'll have to travel down the graph. For quick results, which are only concerned with examining a section of graph, I preferred DFS as its recursive nature allowed me to cover the relevant portions quickly. It also reduced the net complexity by not scanning every neighbour of every node. \\
 
 Most of the problems involved application of these algorithms like topological sorting, checking for bipartite graph, finding shortest route, finding fastest route, detecting cycles and so on. I rarely encountered negative weights so never had to go for Bellman-Ford. Although I believe it will be useful in many advanced problems.
 
